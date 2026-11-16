@@ -1,0 +1,27 @@
+import { HEAD_SCRIPT } from '@house/ui'
+import { fontVariables } from '@house/ui/fonts'
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
+
+import './globals.css'
+import { DebugPanelLoader } from './DebugPanelLoader'
+import { MotionFaultReporter } from './MotionFaultReporter'
+
+export const metadata: Metadata = { title: 'Project name' }
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    // data-js is set by the head script before first paint, so React must not complain that the
+    // attribute differs from the server HTML.
+    <html lang="en" className={fontVariables} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }} />
+      </head>
+      <body>
+        <MotionFaultReporter />
+        {children}
+        <DebugPanelLoader />
+      </body>
+    </html>
+  )
+}
