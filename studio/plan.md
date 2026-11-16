@@ -63,7 +63,6 @@ G5 launch:
 | 05-menu-page | standard | frontend-2 | 02, 03 |
 | 06-visit-page | standard | frontend-3 | 02, 03 |
 | 07-starter-docs-leftovers | mechanical, gate-safe | backend | 01 |
-
 | 08-favicon | standard | frontend | 03 |
 | 09-home-links-prefetch | mechanical | frontend | 04, 05, 06 |
 | 10-header-nav-prefetch | mechanical, gate-safe | frontend | 09 |
@@ -76,6 +75,19 @@ G5 launch:
 - QA rubric `studio/qa/rubric-1.md` finding: the header logo link is 31 px tall. Ticket 12. Left out of G5 on the owner's word, because HQ's build had a machine fault four times. It stays open.
 - Rubric findings with no ticket, because they are out of scope (no public domain, placeholder copy): robots.txt, sitemap, canonical, Open Graph, structured data, placeholder meta description.
 - The owner still has to do: a tap-through on a real iPhone, and an admin edit of a bread showing on /menu.
+
+## G5 outcome (attempt 1, approved: go)
+
+- Released: tag `v1.0.0` on main at `c8d1db4` (after PR #11), reviewed on the main preview.
+- Confirmed by the owner: CI on `c8d1db4` green (GitHub), QA rubric attempt 2 accepted (`studio/qa/rubric-2.md`), C1 map link measured 44 px.
+- No public domain, no DNS, no analytics: nothing to cut over.
+
+## Launch
+
+- Done: G5 approved, `v1.0.0` tagged by HQ. No further release work in this profile.
+- Left with the owner (not studio work): real-iPhone tap-through; admin edit of a bread showing on /menu; the real map URL (placeholder openstreetmap.org accepted for this QA project).
+- Open after launch: ticket 12 (logo tap target, 31 px). Unmerged; HQ's build failed on a machine fault, not the code. It would ship in a later tag, not `v1.0.0`.
+- No new tickets and no merges requested: launch is closed.
 
 ## Schedule
 
