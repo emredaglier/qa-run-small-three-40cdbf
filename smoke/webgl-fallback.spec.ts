@@ -1,6 +1,7 @@
-// The WebGL DOM-fallback check against the example effect (smoke/webgl.ts): with no WebGL, and with
-// shaders that do not build, the page keeps its plain HTML, loses its canvas and logs no error. The
-// engine contract (packages/motion/README.md) also says what is reported: missing WebGL2 is a
+// The WebGL DOM-fallback check, run over every page in EFFECT_PAGES (smoke/webgl.ts). That list is
+// empty in this project, so the spec has no cases until an effect is added. For each one: with no
+// WebGL, and with shaders that do not build, the page keeps its plain HTML, loses its canvas and
+// logs no error. The engine contract (packages/motion/README.md) also says what is reported: missing WebGL2 is a
 // capability gap and reports nothing; a shader that fails to build reports a `gl-error` fault.
 //
 // Not here: how the effect looks or moves, and a context lost mid-session (both need a real GPU;
