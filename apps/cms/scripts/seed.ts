@@ -3,7 +3,7 @@ import { runSeed } from '@harbour/cms-config/seed'
 import { getPayload } from 'payload'
 
 /**
- * `pnpm seed [--force]`: fills the Site global with placeholder text.
+ * `pnpm seed [--force]`: fills Site, Opening hours and the breads with placeholder text.
  * Run through `payload run`, so it loads .env, the config and tsx like the migrations do.
  * Needs the schema migrated first (`pnpm migrate`).
  */

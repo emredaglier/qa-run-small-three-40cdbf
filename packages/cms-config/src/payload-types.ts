@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    breads: Bread;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -76,6 +77,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    breads: BreadsSelect<false> | BreadsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -87,9 +89,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     site: Site;
+    'opening-hours': OpeningHour;
   };
   globalsSelect: {
     site: SiteSelect<false> | SiteSelect<true>;
+    'opening-hours': OpeningHoursSelect<false> | OpeningHoursSelect<true>;
   };
   locale: null;
   widgets: {
@@ -148,6 +152,19 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "breads".
+ */
+export interface Bread {
+  id: number;
+  _order?: string | null;
+  name: string;
+  description?: string | null;
+  days: ('monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday')[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -169,10 +186,15 @@ export interface PayloadKv {
  */
 export interface PayloadLockedDocument {
   id: number;
-  document?: {
-    relationTo: 'users';
-    value: number | User;
-  } | null;
+  document?:
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
+    | ({
+        relationTo: 'breads';
+        value: number | Bread;
+      } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
@@ -241,6 +263,18 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "breads_select".
+ */
+export interface BreadsSelect<T extends boolean = true> {
+  _order?: T;
+  name?: T;
+  description?: T;
+  days?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -294,6 +328,29 @@ export interface Site {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opening-hours".
+ */
+export interface OpeningHour {
+  id: number;
+  week?:
+    | {
+        day: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+        closed?: boolean | null;
+        opens?: string | null;
+        closes?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  address?: string | null;
+  /**
+   * A full https:// link to the map.
+   */
+  mapUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site_select".
  */
 export interface SiteSelect<T extends boolean = true> {
@@ -301,6 +358,26 @@ export interface SiteSelect<T extends boolean = true> {
   tagline?: T;
   intro?: T;
   defaultDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "opening-hours_select".
+ */
+export interface OpeningHoursSelect<T extends boolean = true> {
+  week?:
+    | T
+    | {
+        day?: T;
+        closed?: T;
+        opens?: T;
+        closes?: T;
+        id?: T;
+      };
+  address?: T;
+  mapUrl?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

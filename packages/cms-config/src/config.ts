@@ -5,10 +5,16 @@ import { fileURLToPath } from 'node:url'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig, type PayloadEmailAdapter, type SanitizedConfig } from 'payload'
 
+import { Breads } from './collections/Breads'
 import { Users } from './collections/Users'
 import { buildDatabase, DEFAULT_BUSY_TIMEOUT_MS } from './db'
+import { OpeningHours } from './globals/OpeningHours'
 import { Site } from './globals/Site'
-import { revalidateGlobalHook, type RevalidateOptions } from './revalidate'
+import {
+  revalidateCollectionHooks,
+  revalidateGlobalHook,
+  type RevalidateOptions,
+} from './revalidate'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 
@@ -76,14 +82,30 @@ export function buildSiteConfig(options: SiteConfigOptions): Promise<SanitizedCo
     },
     // Payload mutates the `fields` and `hooks` arrays of the objects it is given (it adds `_order`
     // and its own hooks), so every build gets its own copies (CODING_STANDARDS.md).
-    collections: [Users].map((collection) => ({
-      ...collection,
-      fields: [...collection.fields],
-      hooks: copyHooks(collection.hooks),
-    })),
+    collections: [
+      ...[Users].map((collection) => ({
+        ...collection,
+        fields: [...collection.fields],
+        hooks: copyHooks(collection.hooks),
+      })),
+      // Content the public site renders: a save or delete drops the cached document and lists.
+      ...[Breads].map((collection) => {
+        const hooks = copyHooks(collection.hooks)
+        const revalidate = revalidateCollectionHooks(options.revalidate)
+        return {
+          ...collection,
+          fields: [...collection.fields],
+          hooks: {
+            ...hooks,
+            afterChange: [...(hooks.afterChange ?? []), ...revalidate.afterChange],
+            afterDelete: [...(hooks.afterDelete ?? []), ...revalidate.afterDelete],
+          },
+        }
+      }),
+    ],
     // Every global tells the public site to drop its cached read when it is saved. The hook is
     // appended to the global's own `afterChange` hooks, never replacing them.
-    globals: [Site].map((global) => {
+    globals: [Site, OpeningHours].map((global) => {
       const hooks = copyHooks(global.hooks)
       return {
         ...global,
