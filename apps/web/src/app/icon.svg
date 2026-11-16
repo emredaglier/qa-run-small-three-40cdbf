@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Placeholder "HB" monogram, drawn as strokes so it needs no font. Colours: --color-crust, --color-on-crust. -->
+  <!-- Placeholder "HB" monogram, drawn as strokes so it needs no font. Colours: the crust and on-crust tokens. No double hyphen in comments, XML forbids it. -->
   <rect width="32" height="32" rx="7" fill="#8f3f12"/>
   <path d="M7.5 9v14M15 9v14M7.5 16H15M19.5 9v14M19.5 9h3a3.5 3.5 0 0 1 0 7h-3M19.5 16h4a3.5 3.5 0 0 1 0 7h-4" fill="none" stroke="#fff8ec" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
