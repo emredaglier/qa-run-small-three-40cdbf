@@ -1,0 +1,133 @@
+/* Design tokens and the few shared classes (`.link`, `.btn`). What each token is for: README.md. */
+
+@theme {
+  /* Colour: a warm bakery palette. Pairings checked for AA in README.md. */
+  --color-cream: #fbf5ea;
+  --color-flour: #f3e8d3;
+  --color-ink: #2a1b12;
+  --color-ink-soft: #5e4938;
+  --color-crust: #8f3f12;
+  --color-crust-deep: #6e2e0b;
+  --color-on-crust: #fff8ec;
+  --color-highlight: #f8dfa0;
+  --color-sand: #e7d6b8;
+  --color-line: #d8c4a3;
+
+  /* Type scale. The two largest sizes grow with the screen. */
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.3;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 1.2;
+  --text-3xl: clamp(2.25rem, 1.6rem + 3vw, 3.25rem);
+  --text-3xl--line-height: 1.1;
+
+  /* Spacing and width. */
+  --spacing-gutter: 1.25rem;
+  --spacing-section: 3.5rem;
+  --container-page: 46rem;
+
+  /* Radii. */
+  --radius-chip: 999px;
+  --radius-button: 0.75rem;
+  --radius-card: 1.25rem;
+}
+
+/* Font variables are set on <html> by packages/ui/fonts.ts. */
+@theme inline {
+  --font-display: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-figtree), system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--color-highlight);
+    color: var(--color-ink);
+  }
+  /* Every interactive element gets this ring. Dark areas (footer) swap --focus-ring. */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring, var(--color-crust));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .link {
+    color: var(--color-crust);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  .link:hover {
+    color: var(--color-crust-deep);
+    text-decoration-thickness: 2px;
+  }
+
+  .btn {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-button);
+    background: var(--color-crust);
+    color: var(--color-on-crust);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn:hover {
+    background: var(--color-crust-deep);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.75rem;
+    z-index: 10;
+    transform: translateY(-200%);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-button);
+    background: var(--color-ink);
+    color: var(--color-cream);
+    font-weight: 600;
+  }
+  .skip-link:focus {
+    transform: none;
+  }
+}
+
+/* Motion: only a short colour fade on hover and focus, and none at all when the visitor asks. */
+@media (prefers-reduced-motion: no-preference) {
+  .link,
+  .btn,
+  .nav-link {
+    transition:
+      color 150ms ease,
+      background-color 150ms ease,
+      text-decoration-color 150ms ease;
+  }
+}

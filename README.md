@@ -42,7 +42,7 @@ pnpm start --port 4400 --hostname 127.0.0.1   # flags pass through to next start
 | `apps/cms`            | Payload admin, the only writer of the database                                     |
 | `packages/cms-config` | Payload collections, globals, access, revalidation, seed and migrations            |
 | `packages/motion`     | Motion plumbing, the WebGL engine contract and one example effect                  |
-| `packages/ui`         | Empty shell: head script and the single place fonts are defined                    |
+| `packages/ui`         | Design: tokens, components, head script and the single place fonts are defined     |
 | `infra`               | Docker Compose, Caddy, Litestream, deploy scripts, per-project settings            |
 | `smoke`               | The browser gate on every PR and release: Playwright against the built `web` image |
 | `scripts`             | Repo checks: effects lint, the asset-weight budget (`pnpm check:assets`)           |

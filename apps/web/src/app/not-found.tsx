@@ -1,16 +1,16 @@
+import { PageHeading, TextLink } from '@harbour/ui'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 export const metadata: Metadata = { title: 'Not found' }
 
-/** A missing page. Server-rendered; Next answers with status 404. */
+/** A missing page. Server-rendered inside the layout shell; Next answers with status 404. */
 export default function NotFound() {
   return (
-    <main className="mx-auto max-w-2xl p-8" id="main">
-      <h1 className="text-4xl font-semibold">Page not found</h1>
-      <p className="mt-6">
-        <Link href="/">Back to the home page</Link>
+    <>
+      <PageHeading title="Page not found" intro="That page is not on our shelves." />
+      <p>
+        <TextLink href="/">Back to the home page</TextLink>
       </p>
-    </main>
+    </>
   )
 }

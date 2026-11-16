@@ -1,1 +1,5 @@
 @import 'tailwindcss';
+@import '../../../../packages/ui/src/tokens.css';
+
+/* Workspace packages sit outside this app, so Tailwind is told where their class names are. */
+@source '../../../../packages/ui/src';

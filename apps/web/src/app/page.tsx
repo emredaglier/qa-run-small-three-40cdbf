@@ -1,3 +1,4 @@
+import { PageHeading } from '@harbour/ui'
 import type { Metadata } from 'next'
 
 import { getSite } from '../data/site'
@@ -20,10 +21,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const site = await getSite()
   return (
-    <main className="mx-auto max-w-2xl p-8" id="main">
-      <h1 className="text-4xl font-semibold">{site.name}</h1>
-      {site.tagline ? <p className="mt-2 text-lg">{site.tagline}</p> : null}
-      {site.intro ? <p className="mt-6">{site.intro}</p> : null}
-    </main>
+    <>
+      <PageHeading title={site.name ?? ''} intro={site.tagline} />
+      {site.intro ? <p className="max-w-prose">{site.intro}</p> : null}
+    </>
   )
 }
