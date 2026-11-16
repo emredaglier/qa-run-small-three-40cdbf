@@ -5,7 +5,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   // Workspace packages ship TypeScript source; list each one web imports.
-  transpilePackages: ['@house/ui', '@house/motion', '@house/cms-config'],
+  transpilePackages: ['@harbour/ui', '@harbour/motion', '@harbour/cms-config'],
   poweredByHeader: false,
   // Docker image only: self-contained server output, traced from the monorepo root.
   ...(process.env.NEXT_STANDALONE === '1'

@@ -26,7 +26,7 @@
 //                       exit code is the result.
 //   SMOKE_EXTRA_SECRETS a JSON array of strings the secrets-in-bundle spec must not find. To see
 //                       that spec fail, name a string the page serves:
-//                       SMOKE_EXTRA_SECRETS='["Glow example"]' pnpm smoke -g "no server secret"
+//                       SMOKE_EXTRA_SECRETS='["Harbour Bakery"]' pnpm smoke -g "no server secret"
 //   SMOKE_BUILT_FILES   set by this script, not by you: a JSON file listing every script and stylesheet
 //                       of the image's `.next/static`, for the secrets-in-bundle spec
 //   SMOKE_KEEP=1        keep the temp dir and container for debugging
@@ -103,7 +103,7 @@ try {
     // A production cms config refuses to load without it (CSRF); nothing is served here.
     CMS_ORIGINS: 'http://127.0.0.1',
   }
-  // Workspaces are picked by folder, so renaming the @house scope needs no change here. The `--`
+  // Workspaces are picked by folder, so renaming the @harbour scope needs no change here. The `--`
   // matters: `payload run` swallows the flags before it.
   await run('pnpm', ['--filter', './apps/cms', 'exec', 'payload', 'migrate'], { env: seedEnv })
   await run('pnpm', ['--filter', './apps/cms', 'exec', 'payload', 'run', 'scripts/seed.ts', '--'], {

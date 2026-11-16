@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { MOTION_FAULT_EVENT, reportMotionFault } from '@house/motion'
+import { MOTION_FAULT_EVENT, reportMotionFault } from '@harbour/motion'
 import { describe, expect, it } from 'vitest'
 
 import { startMotionFaultReporting } from './observability'

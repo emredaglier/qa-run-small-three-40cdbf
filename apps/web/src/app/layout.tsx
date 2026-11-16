@@ -1,5 +1,5 @@
-import { HEAD_SCRIPT } from '@house/ui'
-import { fontVariables } from '@house/ui/fonts'
+import { HEAD_SCRIPT } from '@harbour/ui'
+import { fontVariables } from '@harbour/ui/fonts'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
@@ -7,7 +7,7 @@ import './globals.css'
 import { DebugPanelLoader } from './DebugPanelLoader'
 import { MotionFaultReporter } from './MotionFaultReporter'
 
-export const metadata: Metadata = { title: 'Project name' }
+export const metadata: Metadata = { title: 'Harbour Bakery' }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

@@ -1,4 +1,4 @@
-import type { TuningPayload } from '@house/motion'
+import type { TuningPayload } from '@harbour/motion'
 
 export type SaveResult = { ok: true } | { ok: false; error: string }
 

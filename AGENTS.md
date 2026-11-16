@@ -11,7 +11,7 @@ and checks in CI that fail the pull request.
 ## Project
 
 A house starter: the backbone of every project, without a design. Decisions are in `docs/adr/`.
-When you start a project from it, rename the `@house/*` workspace scope, replace the placeholder
+When you start a project from it, rename the `@harbour/*` workspace scope, replace the placeholder
 text, and fill `packages/ui` with the project's own design (`README.md`, "Starting a project").
 
 ## The playbook
