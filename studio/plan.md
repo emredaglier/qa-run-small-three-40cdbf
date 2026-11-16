@@ -64,7 +64,18 @@ G5 launch:
 | 06-visit-page | standard | frontend-3 | 02, 03 |
 | 07-starter-docs-leftovers | mechanical, gate-safe | backend | 01 |
 
-QA tickets are cut from the QA report after G4.
+| 08-favicon | standard | frontend | 03 |
+| 09-home-links-prefetch | mechanical | frontend | 04, 05, 06 |
+| 10-header-nav-prefetch | mechanical, gate-safe | frontend | 09 |
+| 11-map-link-tap-target (G4 C1) | standard, gate-safe | frontend-3 | 10 |
+| 12-logo-tap-target | standard, gate-safe | frontend | 11 |
+
+## G4 outcome (attempt 1, approved with conditions)
+
+- C1: the "Open the map" link on /visit gets a tap target at least 44 px tall. Ticket 11, due before G5 (2026-12-09).
+- QA rubric `studio/qa/rubric-1.md` finding: the header logo link is 31 px tall. Ticket 12.
+- Rubric findings with no ticket, because they are out of scope (no public domain, placeholder copy): robots.txt, sitemap, canonical, Open Graph, structured data, placeholder meta description.
+- The owner still has to do: a tap-through on a real iPhone, and an admin edit of a bread showing on /menu.
 
 ## Schedule
 
