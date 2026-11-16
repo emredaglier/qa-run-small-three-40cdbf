@@ -62,6 +62,7 @@ G5 launch:
 | 04-home-page | standard | frontend | 02, 03 |
 | 05-menu-page | standard | frontend-2 | 02, 03 |
 | 06-visit-page | standard | frontend-3 | 02, 03 |
+| 07-starter-docs-leftovers | mechanical, gate-safe | backend | 01 |
 
 QA tickets are cut from the QA report after G4.
 
