@@ -2,7 +2,7 @@
 author: producer
 class: standard
 assignee: frontend
-blockedBy: [01-project-setup]
+blockedBy: 01-project-setup
 ---
 
 # 03: Design in code, the key screens and the shell

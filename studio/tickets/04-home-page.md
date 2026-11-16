@@ -2,7 +2,7 @@
 author: producer
 class: standard
 assignee: frontend
-blockedBy: [02-content-model, 03-design-in-code]
+blockedBy: 02-content-model, 03-design-in-code
 ---
 
 # 04: Home page

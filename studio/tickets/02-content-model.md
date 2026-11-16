@@ -2,7 +2,7 @@
 author: producer
 class: hard
 assignee: backend
-blockedBy: [01-project-setup]
+blockedBy: 01-project-setup
 ---
 
 # 02: Content model, seed and web reads

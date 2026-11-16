@@ -2,7 +2,7 @@
 author: producer
 class: setup
 assignee: backend
-blockedBy: []
+blockedBy:
 ---
 
 # 01: Project setup, starter cleanup
