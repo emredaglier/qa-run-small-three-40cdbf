@@ -23,6 +23,8 @@ export function SiteHeader({ name, pathname, nav = SITE_NAV }: Props) {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  // shortcut: no prefetch while /menu and /visit are missing (404s fail smoke); drop it with tickets 05, 06.
+                  prefetch={false}
                   aria-current={isCurrent(item.href, pathname) ? 'page' : undefined}
                   className={cx(
                     'nav-link flex min-h-11 items-center px-3 text-ink-soft hover:text-ink',
