@@ -10,9 +10,6 @@ export const dynamic = 'force-dynamic'
 
 const TEASER_COUNT = 3
 
-// shortcut: no prefetch while /menu and /visit are missing (404s fail smoke); drop it with tickets 05, 06.
-const noPrefetch = { prefetch: false } as const
-
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSite()
   return {
@@ -64,9 +61,7 @@ export default async function Home() {
           <p className="mt-4 max-w-prose">This week&rsquo;s breads will be listed soon.</p>
         )}
         <p className="mt-6">
-          <ButtonLink href="/menu" {...noPrefetch}>
-            See the full menu
-          </ButtonLink>
+          <ButtonLink href="/menu">See the full menu</ButtonLink>
         </p>
       </section>
 
@@ -80,9 +75,7 @@ export default async function Home() {
             : row.closed || !row.opens || !row.closes
               ? `Closed today (${dayName(day)}).`
               : `Open today (${dayName(day)}), ${row.opens}–${row.closes}.`}{' '}
-          <TextLink href="/visit" {...noPrefetch}>
-            Visit us
-          </TextLink>
+          <TextLink href="/visit">Visit us</TextLink>
         </p>
       </section>
     </>
