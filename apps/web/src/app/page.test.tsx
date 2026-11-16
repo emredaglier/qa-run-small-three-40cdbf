@@ -20,5 +20,6 @@ it('renders the Site global as plain server HTML, so it needs no JavaScript', as
 
 it('still renders on an unseeded database', async () => {
   data.site = {}
-  expect(renderToStaticMarkup(await Home())).toContain('<main')
+  // The layout owns <main>; the page renders its content only.
+  expect(renderToStaticMarkup(await Home())).toContain('<h1')
 })
