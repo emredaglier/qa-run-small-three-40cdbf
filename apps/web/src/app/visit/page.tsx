@@ -54,7 +54,11 @@ export default async function VisitPage() {
           {mapUrl ? (
             <p className="mt-4">
               {/* A plain link out: no embed, no iframe, no third-party script. */}
-              <a href={mapUrl} className="link" rel="noopener noreferrer">
+              <a
+                href={mapUrl}
+                className="link inline-flex min-h-11 items-center"
+                rel="noopener noreferrer"
+              >
                 Open the map to find Harbour Bakery
               </a>
             </p>
