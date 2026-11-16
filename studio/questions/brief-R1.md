@@ -48,3 +48,9 @@ The brief leaves these open. Answer `yes all`, or per number. "Yes" accepts my r
 ❓ **Q7** - **Where it launches**: `infra/project.env` still has the placeholder domain `example.com`, and the deploy and Cloudflare steps refuse to run with it. This is a throwaway project. Should it launch with no public domain and no analytics?
 
 ➡️ Yes. No public domain: G5 approves a release tag reviewed on the preview. At G5, the DNS-plan and redirect boxes read "n/a, no public domain" and analytics reads "none". There's no cookie banner.
+
+## Comments
+
+### Owner, 2026-11-16T12:11:12.880Z
+
+yes all
