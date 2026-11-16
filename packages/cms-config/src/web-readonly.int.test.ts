@@ -11,6 +11,7 @@ import { buildSiteConfig } from './config'
 let dir: string
 let cms: Payload
 let web: Payload
+let breadId: number
 
 beforeAll(async () => {
   dir = fs.mkdtempSync(path.join(os.tmpdir(), 'house-readonly-'))
@@ -21,6 +22,9 @@ beforeAll(async () => {
   })
   await cms.db.migrate()
   await cms.updateGlobal({ slug: 'site', data: { name: 'Written by cms' } })
+  await cms.updateGlobal({ slug: 'opening-hours', data: { address: 'Written by cms' } })
+  breadId = (await cms.create({ collection: 'breads', data: { name: 'Loaf', days: ['monday'] } }))
+    .id
   web = await getPayload({
     key: 'web',
     config: await buildSiteConfig({ role: 'web', databasePath, secret: 's' }),
@@ -48,6 +52,31 @@ describe('the web role', () => {
   it('fails a Local API write even with access rules bypassed', async () => {
     await expect(web.updateGlobal({ slug: 'site', data: { name: 'Hacked' } })).rejects.toThrow()
     expect((await cms.findGlobal({ slug: 'site' })).name).toBe('Written by cms')
+  })
+
+  it('reads breads and opening hours, and fails every write to them', async () => {
+    expect((await web.find({ collection: 'breads' })).docs.map((doc) => doc.name)).toEqual(['Loaf'])
+    expect((await web.findGlobal({ slug: 'opening-hours' })).address).toBe('Written by cms')
+
+    const client = (web.db as unknown as { client: Client }).client
+    await expect(client.execute("UPDATE breads SET name = 'x'")).rejects.toThrow(/readonly/i)
+    await expect(client.execute("UPDATE opening_hours SET address = 'x'")).rejects.toThrow(
+      /readonly/i,
+    )
+
+    await expect(
+      web.create({ collection: 'breads', data: { name: 'Hacked', days: ['monday'] } }),
+    ).rejects.toThrow()
+    await expect(
+      web.update({ collection: 'breads', id: breadId, data: { name: 'Hacked' } }),
+    ).rejects.toThrow()
+    await expect(web.delete({ collection: 'breads', id: breadId })).rejects.toThrow()
+    await expect(
+      web.updateGlobal({ slug: 'opening-hours', data: { address: 'Hacked' } }),
+    ).rejects.toThrow()
+
+    expect((await cms.find({ collection: 'breads' })).docs.map((doc) => doc.name)).toEqual(['Loaf'])
+    expect((await cms.findGlobal({ slug: 'opening-hours' })).address).toBe('Written by cms')
   })
 
   it('builds the config again in one process without throwing (a shared global is not mutated)', async () => {
