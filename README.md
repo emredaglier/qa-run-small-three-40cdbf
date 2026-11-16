@@ -23,7 +23,7 @@ cp apps/cms/.env.example apps/cms/.env && cp apps/web/.env.example apps/web/.env
 pnpm migrate   # creates apps/cms/data/site.db
 pnpm seed      # fills the placeholder Site global
 pnpm dev       # web on http://localhost:3000
-pnpm --filter @house/cms dev   # the admin on http://localhost:3001/admin
+pnpm --filter @harbour/cms dev   # the admin on http://localhost:3001/admin
 ```
 
 To serve a production build of the web app instead:
@@ -82,21 +82,13 @@ run it again with the change and compare.
 
 1. Create the project repo from the template, then fill in `infra/project.env` and follow the
    checklist at the top of `infra/README.md`.
-2. Rename the `@house/*` scope in every `package.json`, import and `transpilePackages` list. Also
-   rename the `house:motion-fault` event (`packages/motion/src/fault.ts`), the email adapter's
-   `defaultFromName` (`packages/cms-config/src/config.ts`) and the `'Project name'` title in
+2. Rename the workspace scope in every `package.json`, import and `transpilePackages` list. Also
+   rename the motion fault event (`packages/motion/src/fault.ts`), the email adapter's
+   `defaultFromName` (`packages/cms-config/src/config.ts`) and the title in
    `apps/web/src/app/layout.tsx`. Fill in `reportFault` in `apps/web/src/lib/observability.ts`
    (it only logs now) to send motion faults to the project's error monitor. Call `configureIdle`
-   with the project's idle timeouts if it has route-specific ones.
-   Delete the example effect you do not keep. Every place that names it:
-   - `packages/motion/src/glow` and its `@house/motion/glow` export in `packages/motion/package.json`;
-   - `apps/web/src/app/examples/glow`;
-   - `/examples/glow` in `EFFECT_PAGES` in `smoke/webgl.ts` (its page is found by the route sweep
-     on its own, and goes with the folder);
-   - the `glow-sweep` scenario and `IDLE_PATH` in `perf/scenarios.ts` (point `IDLE_PATH` at the
-     project's own looping page, or set it to `null` to skip the idle check);
-   - the `glow-sweep` keys in `perf/perf-budget.json` (a test fails while a budget names a missing
-     scenario), then record a new budget with `pnpm perf:check --record`.
+   with the project's idle timeouts if it has route-specific ones. A project without WebGL keeps
+   `EFFECT_PAGES` (`smoke/webgl.ts`) and `SCENARIOS` (`perf/scenarios.ts`) empty, `IDLE_PATH` `null`.
 3. Replace `packages/cms-config/src/seed/placeholder.ts`, the Site global and the home page with the
    project's content model.
 4. Fill `packages/ui` with the project's design (tokens, fonts in `packages/ui/fonts.ts`).

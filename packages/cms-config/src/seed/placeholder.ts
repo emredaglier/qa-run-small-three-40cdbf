@@ -3,7 +3,7 @@
  * own text (or deletes the seed once the owner fills the admin in).
  */
 export const PLACEHOLDER_SITE = {
-  name: 'Project name',
+  name: 'Harbour Bakery',
   tagline: 'A placeholder page, read through the Payload Local API.',
   intro:
     'This text is stored in the CMS database and rendered on the server, so it is visible with JavaScript turned off.',

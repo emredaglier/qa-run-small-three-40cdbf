@@ -1,8 +1,8 @@
-import { globalTag } from '@house/cms-config/tags'
+import { globalTag } from '@harbour/cms-config/tags'
 import { unstable_cache } from 'next/cache'
 
 import { getWebPayload } from '../lib/payload'
-import type { SiteDoc } from '@house/cms-config'
+import type { SiteDoc } from '@harbour/cms-config'
 
 /**
  * Data-access pattern for `web` (copy it for every further read):

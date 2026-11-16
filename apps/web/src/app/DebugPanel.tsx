@@ -1,7 +1,7 @@
 'use client'
 
-import { setTuningValue, tuningPayload, type TuningKind } from '@house/motion'
-import { useTunings } from '@house/motion/react'
+import { setTuningValue, tuningPayload, type TuningKind } from '@harbour/motion'
+import { useTunings } from '@harbour/motion/react'
 import { useState } from 'react'
 
 import { saveTuning } from '../lib/tuning-save'
